@@ -1,0 +1,52 @@
+spring:
+  application:
+    name: flight-booking
+  datasource:
+    url: jdbc:mysql://localhost:3306/flightbooking?createDatabaseIfNotExist=true
+    username: root
+    password:   # Add your MySQL password if required
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: true
+
+  main:
+    banner-mode: off
+  doc:
+    swagger-ui:
+      path: /swagger-ui.html
+      enabled: true
+    api-docs:
+      path: /v3/api-docs
+      enabled: true
+
+  security:
+    user:
+      name: admin  # Default username
+      password: admin  # Default password
+
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+auth0:
+  domain: "your-auth0-domain.auth0.com"  # e.g., "dev-xyz.us.auth0.com"
+  client-id: "your-client-id"           # Obtain from Auth0 dashboard
+  client-secret: "your-client-secret"   # Obtain from Auth0 dashboard
+  audience: "https://your-api-audience" # e.g., "https://flight-booking-api"
+
+jwt:
+  secret: "your-jwt-secret-key"         # A strong secret key (optional if using Auth0)
+  expiration: 86400000                  # 24 hours in milliseconds
+
+logging:
+  level:
+    root: INFO
+    org.hibernate: DEBUG
+    edu.miu.cs.cs425: DEBUG
